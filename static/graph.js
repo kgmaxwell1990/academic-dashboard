@@ -123,12 +123,12 @@ function makeGraphs(error, salariesData){
 //------------------------------salary yrs of service scatter--------------------------------------
 
 var genderColors = d3.scale.ordinal()
-.domain(["Female", "Male"])
-.range(["pink", "blue"]);
+    .domain(["Female", "Male"])
+    .range(["pink", "blue"]);
 
 var experienceDim = ndx.dimension(function(d){
-return [d.yrs_service, d.salary, d.rank, d.sex];
-});
+    return [d.yrs_service, d.salary, d.rank, d.sex];
+    });
 var experienceSalaryGroup = experienceDim.group();
 
 var eDim = ndx.dimension(dc.pluck("yrs_service"));
@@ -136,24 +136,24 @@ var minExperience = eDim.bottom(1)[0].yrs_service;
 var maxExperience = eDim.top(1)[0].yrs_service;
 
 dc.scatterPlot("#service-salary-scatter")
-.width(800)
-.height(400)
-.x(d3.scale.linear().domain([minExperience,maxExperience]))
-.brushOn(false)
-.symbolSize(8)
-.clipPadding(10)
-.yAxisLabel("Salary")
-.xAxisLabel("Years Of Service")
-.title(function (d) {
-return d.value + " " + d.key[3] + " " + d.key[2] + " earned " + d.key[1];
-})
-.colorAccessor(function (d) {
-return d.key[3];
-})
-.colors(genderColors)
-.dimension(experienceDim)
-.group(experienceSalaryGroup)
-.margins({top: 10, right: 50, bottom: 75, left: 75});
+    .width(800)
+    .height(400)
+    .x(d3.scale.linear().domain([minExperience,maxExperience]))
+    .brushOn(false)
+    .symbolSize(8)
+    .clipPadding(10)
+    .yAxisLabel("Salary")
+    .xAxisLabel("Years Of Service")
+    .title(function (d) {
+    return d.value + " " + d.key[3] + " " + d.key[2] + " earned " + d.key[1];
+    })
+    .colorAccessor(function (d) {
+    return d.key[3];
+    })
+    .colors(genderColors)
+    .dimension(experienceDim)
+    .group(experienceSalaryGroup)
+    .margins({top: 10, right: 50, bottom: 75, left: 75});
 
 //------------------------------salary yrs since phd scatter--------------------------------------
 

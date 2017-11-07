@@ -1,1 +1,1 @@
-web: gunicorn academia-dash:app
+web: gunicorn dashboard:app
